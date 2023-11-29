@@ -1,4 +1,4 @@
-<h3>施設一覧</h3>
+<h3>登録済み施設一覧</h3>
 
 <% if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
@@ -12,6 +12,9 @@
       <th>値段</th>
       <th>画像</th>
       <th>作成日</th>
+      <th>参照</th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
 
@@ -22,7 +25,17 @@
         <td><%= room.introduction %></td>
         <td><%= room.price %></td>
         <td><%= room.image %></td>
-        <td><%= room.created_at %></td>
+        <td><%= room.created_at.to_s(:datetime_jp) %></td>
+        <td>
+        <%= link_to "参照", room %>
+        </td>
+        <td>
+        <%= link_to "編集", [:edit, room] %>
+        </td>
+        <td>
+        <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

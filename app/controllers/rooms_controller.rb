@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def new
-    @rooms = Room.new
+    @room = Room.new
   end
 
   def create
@@ -18,14 +18,29 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:id])
   end
 
   def edit
+    @room = Room.find(params[:id])
   end
 
   def update
+    @room = Room.find(params[:id])
+    if @room.update(params.require(:room).permit(:name, :introduction, :price, :address, :image))
+      flash[:notice] = "施設名「#{@room.name}」の情報を更新しました"
+      redirect_to :rooms
+    else
+      render "edit"
+    end
   end
 
   def destroy
+    def destroy
+      @room = Room.find(params[:id])
+      @room.destroy
+      flash[:notice] = "施設を削除しました"
+      redirect_to :rooms
+    end
   end
 end

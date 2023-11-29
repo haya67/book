@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_in: 
+  check_out: 
+  people: MyString
+  total: MyString
+  price: 
+
+two:
+  check_in: 
+  check_out: 
+  people: MyString
+  total: MyString
+  price: 
