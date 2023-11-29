@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'reservations/index'
+  devise_for :users
+  get 'home/index'
+  get 'home/show'
+ 
+   root to: "home#index"
+   resources :rooms
+   resources :reservations
+
+  resources :reservations, only: [:index, :new, :create, :show] do
+    collection do
+      post :confirm
+    end
+  end
+
+  post 'reserve/back' # 確認画面から「入力画面に戻る」をクリックしたとき
 end

@@ -1,0 +1,51 @@
+<h3>施設予約</h3>
+
+# 予約したい施設の簡易情報
+<table>
+ <thead>
+  <tr>
+   <th>施設名</th>
+  </tr>
+ </thead>
+
+ <tbody>
+  <% @rooms.each do |room| %>
+   <tr>
+    <td><%= reservation.room.name %></td>
+   </tr>
+  <% end %>
+ </tbody>
+</table>
+
+# 宿泊日数等の入力欄
+<%= form_with model: @reservation , url: confirm_reservations_path do |f| %>
+  <table>
+    <tr>
+        <th><%= f.label :start ,"チェックイン日" %></th>
+        <td><%= f.date_field :start %></td>
+    </tr>
+
+    <tr>
+        <th><%= f.label :finish ,"チェックアウト日" %></th>
+        <td><%= f.date_field :finish %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :day ,"宿泊日数" %></th>
+      <td><%= f.number_field :day %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :people, "人数" %></th>
+      <td><%= f.numbeer_field :people %></td>
+    </tr>
+
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "予約確認画面へ"%></li>
+      <li><%= link_to "施設一覧に戻る", :rooms %></li>
+    </ul>
+  </div>
+<% end %>
